@@ -1,4 +1,25 @@
-# movie-stream
+# movs
+
+movie streaming web application like Netflix for users to see a real-time movie list and add titles to their favourite list.
+<br/>
+
+## Setup
+
+Fill in the [TMDB](VITE_TMDB_ACCESS_TOKEN=your_access_token) key and access token in the .env file:
+https://www.themoviedb.org/settings/api
+
+VITE_TMDB_API_KEY=your_api_key
+VITE_TMDB_ACCESS_TOKEN=your_access_token
+
+### Install dependencies
+
+```bash
+    npm install
+```
+
+Then you can follow the steps below:
+
+<br/>
 
 <div align="center" style="margin: 30px;">
     <a href="https://refine.dev">
