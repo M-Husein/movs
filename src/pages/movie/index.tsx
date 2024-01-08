@@ -130,6 +130,8 @@ export default function Page(){
     },
   };
 
+  const renderNoVideo = (text?: any) => <div className="aspect-video bg-slate-300 lg_rounded-lg grid place-content-center text-lg text-gray-500">{text}</div>;
+
   const renderVideo = () => {
     if(activeVideo){
       switch(activeVideo.site){
@@ -152,11 +154,56 @@ export default function Page(){
               decoding="async"
               alt={activeVideo.name}
               src={"https://image.tmdb.org/t/p/original" + activeVideo.backdrop_path}
-              className="bg-slate-300 block text-0 w-full h-full object-cover"
+              className="bg-slate-300 block text-0 w-full h-full object-cover lg_rounded-lg"
               onLoad={removeMediaLoading}
             />
           );
       }
+    }
+
+    return renderNoVideo('No Video');
+  }
+
+  const renderVideos = () => { // @ts-ignore
+    const videos = data?.videos?.results;
+    if(videos?.length){
+      return (
+        <>
+          <h3 className="text-lg mt-4 max-md_px-4">Other Video</h3>
+          <Swiper
+            navigation
+            slidesPerView={2}
+            spaceBetween={15}
+            breakpoints={breakpoints}
+            modules={[Navigation]}
+            className="py-2"
+            style={styleSmallSlider}
+          >
+            {videos.map((item: any) => (
+              <SwiperSlide key={item.id}>
+                <Card
+                  className="w-full relative cursor-pointer"
+                  onClick={() => setActiveVideo(item)}
+                >
+                  <CardMedia
+                    component="img"
+                    alt={item.title || item.original_title}
+                    loading="lazy"
+                    decoding="async"
+                    image={"https://i.ytimg.com/vi/"  + item.key + "/hqdefault.jpg"}
+                    className="bg-slate-300 aspect-video block text-0"
+                    onLoad={removeMediaLoading}
+                  />
+                  <PlayCircleOutlineIcon 
+                    fontSize="large" 
+                    className={"absolute inset-0 m-auto rounded-full shadow-lg " + (activeVideo?.id === item.id ? "text-blue-500" : "text-white")}
+                  />
+                </Card>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </>
+      )
     }
   }
 
@@ -164,45 +211,47 @@ export default function Page(){
     const dataImages = data?.images;
     const { backdrops, posters } = dataImages || {};
     const images = dataImages ? [...backdrops, ...posters] : [];
-    return (
-      <>
-        <h3 className="text-lg mt-4 max-md_px-4">Images</h3>
-        <Swiper
-          navigation
-          slidesPerView={2}
-          spaceBetween={15}
-          breakpoints={breakpoints}
-          modules={[Navigation]}
-          className="py-2"
-          style={styleSmallSlider}
-          id="imagesGallery"
-        >
-          {/* @ts-ignore */}
-          {images.map((item: any, idx: number) => (
-            <SwiperSlide key={item.file_path}>
-              <Card
-                className="w-full h-full cursor-pointer"
-                component="a"
-                href={"https://image.tmdb.org/t/p/original" + item.file_path}
-                data-pswp-width={item.width}
-                data-pswp-height={item.height}
-              >
-                <CardMedia
-                  component="img"
-                  alt={"" + idx + 1}
-                  loading="lazy"
-                  decoding="async"
-                  image={"https://image.tmdb.org/t/p/w500" + item.file_path}
-                  className="bg-slate-300 text-0 aspect-video"
-                  sx={{ objectFit: item.aspect_ratio === 0.667 ? "contain" : undefined }}
-                  onLoad={item.aspect_ratio !== 0.667 ? removeMediaLoading : undefined}
-                />
-              </Card>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </>
-    )
+
+    if(images.length){
+      return (
+        <>
+          <h3 className="text-lg mt-4 max-md_px-4">Images</h3>
+          <Swiper
+            navigation
+            slidesPerView={2}
+            spaceBetween={15}
+            breakpoints={breakpoints}
+            modules={[Navigation]}
+            className="py-2"
+            style={styleSmallSlider}
+            id="imagesGallery"
+          >
+            {images.map((item: any, idx: number) => (
+              <SwiperSlide key={item.file_path}>
+                <Card
+                  className="w-full h-full cursor-pointer"
+                  component="a"
+                  href={"https://image.tmdb.org/t/p/original" + item.file_path}
+                  data-pswp-width={item.width}
+                  data-pswp-height={item.height}
+                >
+                  <CardMedia
+                    component="img"
+                    alt={"" + idx + 1}
+                    loading="lazy"
+                    decoding="async"
+                    image={"https://image.tmdb.org/t/p/w500" + item.file_path}
+                    className="bg-slate-300 text-0 aspect-video"
+                    sx={{ objectFit: item.aspect_ratio === 0.667 ? "contain" : undefined }}
+                    onLoad={item.aspect_ratio !== 0.667 ? removeMediaLoading : undefined}
+                  />
+                </Card>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </>
+      )
+    }
   }
 
   const renderValues = () => { // @ts-ignore
@@ -214,7 +263,7 @@ export default function Page(){
       : 
       [];
     return (
-      <div className="my-4">
+      <div className="my-4 max-md_px-4">
         <Grid container spacing={3}>
           {values.map((item: any, index: number) => (
             <Grid key={index} item xs={12} md={4} lg={4}>
@@ -235,48 +284,13 @@ export default function Page(){
         <Grid item lg={9} xs={12}>
           <div className="aspect-video">
             {loadingDetail ?
-              <div className="aspect-video bg-slate-300" />
+              renderNoVideo()
               :
               renderVideo()
             }
           </div>
 
-          <h3 className="text-lg mt-4 max-md_px-4">Other Video</h3>
-          <Swiper
-            navigation
-            slidesPerView={2}
-            spaceBetween={15}
-            breakpoints={breakpoints}
-            modules={[Navigation]}
-            className="py-2"
-            style={styleSmallSlider}
-          >
-            {/* @ts-ignore */}
-            {(data?.videos?.results || []).map((item: any) => (
-              <SwiperSlide key={item.id}>
-                <Card
-                  className="w-full relative cursor-pointer"
-                  onClick={() => {
-                    setActiveVideo(item)
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    alt={item.title || item.original_title}
-                    loading="lazy"
-                    decoding="async"
-                    image={"https://i.ytimg.com/vi/"  + item.key + "/hqdefault.jpg"}
-                    className="bg-slate-300 aspect-video block text-0"
-                    onLoad={removeMediaLoading}
-                  />
-                  <PlayCircleOutlineIcon 
-                    fontSize="large" 
-                    className={"absolute inset-0 m-auto rounded-full shadow-lg " + (activeVideo?.id === item.id ? "text-blue-500" : "text-white")}
-                  />
-                </Card>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {renderVideos()}
 
           {renderImages()}
 
@@ -367,7 +381,7 @@ export default function Page(){
                   <h2 className="text-xl">Synopsis</h2>
 
                   {/* @ts-ignore */}
-                  <p>{data.overview}</p>
+                  <p className="mb-0">{data.overview}</p>
                 </>
               )
             }

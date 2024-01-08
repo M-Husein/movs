@@ -9,6 +9,7 @@ import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import MuiLink from "@mui/material/Link";
+import Alert from "@mui/material/Alert";
 import {
   RegisterFormTypes,
   useActiveAuthProvider,
@@ -56,6 +57,16 @@ const RegisterPage: React.FC<any> = ({
 
   const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
+  const doRegister = (data: any) => {
+    registerMutate(data, {
+      onSuccess: (state: any) => {
+        if(state.success){
+          login(data);
+        }
+      },
+    })
+  }
+
   const renderProviders = () => {
     return (
       <>
@@ -84,7 +95,7 @@ const RegisterPage: React.FC<any> = ({
                   textTransform: "none",
                 }}
                 onClick={() =>
-                  registerMutate({ 
+                  doRegister({ 
                     // Static register data
                     // @ts-ignore
                     name: 'Jane Doe',
@@ -115,9 +126,9 @@ const RegisterPage: React.FC<any> = ({
 
       <Card {...(contentProps ?? {})}>
         <CardContent sx={{ p: "32px", pt: 7, "&:last-child": { pb: "32px" } }}>
-          <p className="text-sm bg-orange-100 bg-theme p-2 rounded-lg border border-orange-300">
-            Pay attention: this is not the original sign in. Don't insert your real credentials here!
-          </p>
+          <Alert severity="warning" className="mb-4">
+            {translate('attentionAuth')}
+          </Alert>
             
           {!hideForm && (
             <Box
@@ -126,13 +137,7 @@ const RegisterPage: React.FC<any> = ({
                 if (onSubmit) {
                   return onSubmit(data);
                 }
-                return registerMutate(data, {
-                  onSuccess: (state: any) => {
-                    if(state.success){
-                      login(data);
-                    }
-                  },
-                });
+                return doRegister(data);
               })}
             >
               <TextField

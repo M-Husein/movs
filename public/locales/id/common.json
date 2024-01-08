@@ -20,18 +20,6 @@
         "haveAccount": "Punya akun?"
       }
     },
-    "forgotPassword": {
-      "title": "Lupa kata sandi Anda?",
-      "fields": {
-        "email": "Email"
-      },
-      "errors": {
-        "validEmail": "Alamat email salah"
-      },
-      "buttons": {
-        "submit": "Send reset instructions"
-      }
-    },
     "register": {
       "title": "Daftar akun Anda",
       "fields": {
@@ -46,24 +34,11 @@
         "haveAccount": "Sudah memiliki akun?"
       }
     },
-    "updatePassword": {
-      "title": "Update password",
-      "fields": {
-        "password": "New Password",
-        "confirmPassword": "Confirm new password"
-      },
-      "errors": {
-        "confirmPasswordNotMatch": "Passwords do not match"
-      },
-      "buttons": {
-        "submit": "Update"
-      }
-    },
     "error": {
       "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
-      "404": "Sorry, the page you visited does not exist.",
+      "404": "Maaf, halaman yang Anda kunjungi tidak ada.",
       "resource404": "Are you sure you have created the {{resource}} resource.",
-      "backHome": "Back Home",
+      "backHome": "Kembali ke Home",
       "unspecific": "Terjadi Kesalahan"
     }
   },
@@ -107,59 +82,12 @@
   "tags": {
     "clone": "Clone"
   },
-  "dashboard": {
-    "title": "Dashboard"
-  },
-  "blog_posts": {
-    "blog_posts": "Blog Posts",
-    "fields": {
-      "id": "Id",
-      "title": "Title",
-      "content": "Content",
-      "status": "Status",
-      "createdAt": "Created At",
-      "category": "Category"
-    },
-    "titles": {
-      "create": "Create Blog Post",
-      "edit": "Edit Blog Post",
-      "list": "Blog Posts",
-      "show": "Show Blog Post"
-    }
-  },
-  "categories": {
-    "categories": "Categories",
-    "fields": {
-      "id": "Id",
-      "title": "Title",
-      "createdAt": "Created At"
-    },
-    "titles": {
-      "create": "Create Category",
-      "edit": "Edit Category",
-      "list": "Categories",
-      "show": "Show Category"
-    }
-  },
   "documentTitle": {
     "default": "Movs",
-    "suffix": " | Movs",
-    "blog_posts": {
-      "list": "Blog Posts | Movs",
-      "show": "#{{id}} Show Blog Post | Movs",
-      "edit": "#{{id}} Edit Blog Post | Movs",
-      "create": "Create new Blog Post | Movs",
-      "clone": "#{{id}} Clone Blog Post | Movs"
-    },
-    "categories": {
-      "list": "Categories | Movs",
-      "show": "#{{id}} Show Category | Movs",
-      "edit": "#{{id}} Edit Category | Movs",
-      "create": "Create new Category | Movs",
-      "clone": "#{{id}} Clone Category | Movs"
-    }
+    "suffix": " • Movs"
   },
   "table": {
     "actions": "Actions"
-  }
+  },
+  "attentionAuth": "Perhatikan: ini bukan login asli. Jangan masukkan kredensial asli Anda di sini."
 }

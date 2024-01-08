@@ -105,4 +105,6 @@ export const CommonSlider = ({
       </>
     )
   }
+
+  return null;
 }

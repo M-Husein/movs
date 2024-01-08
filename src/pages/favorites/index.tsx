@@ -43,7 +43,7 @@ export default function Page(){
   }
 
   return (
-    <div className="max-w-screen-xl mx-auto py-4 lg_px-5">
+    <div className="max-w-screen-xl mx-auto p-4 lg_px-5">
       <h1 className="text-2xl">{TITLE}</h1>
 
       {dataFavorites?.length ?

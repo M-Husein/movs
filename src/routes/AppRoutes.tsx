@@ -3,6 +3,7 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import { Authenticated } from "@refinedev/core";
 import { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
 import Skeleton from '@mui/material/Skeleton';
+import CircularProgress from '@mui/material/CircularProgress';
 import { ErrorComponent } from "@refinedev/mui";
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { SplashScreen } from '@/components/SplashScreen';
@@ -65,7 +66,18 @@ export const AppRoutes = () => {
 const lazyComponent = (Element: any, loading?: any) => {
   return (
     <ErrorBoundary>
-      <Suspense fallback={loading || <Skeleton />}>
+      <Suspense 
+        fallback={
+          loading || (
+            <div 
+              className="max-w-screen-xl mx-auto grid place-content-center"
+              style={{ minHeight: 'calc(100vh - 64px)' }}
+            >
+              <CircularProgress color="warning" size={75} thickness={3} />
+            </div>
+          )
+        }
+      >
         <Element />
       </Suspense>
     </ErrorBoundary>
