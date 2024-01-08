@@ -111,6 +111,7 @@ export default function Page(){
 
   const styleSmallSlider: any = { // @ts-ignore
     '--swiper-navigation-size': '20px',
+    '--swiper-navigation-top-offset': '40%',
     '--swiper-navigation-sides-offset': '5px',
   };
 
@@ -137,7 +138,7 @@ export default function Page(){
             <iframe
               title={activeVideo.name}
               src={"https://www.youtube.com/embed/" + activeVideo.key}
-              className="w-full h-full bg-slate-300" 
+              className="w-full h-full bg-slate-300 lg_rounded-lg" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               allowFullScreen
               loading="lazy"

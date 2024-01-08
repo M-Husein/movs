@@ -78,8 +78,7 @@ export function Search(){
     <>
       <div 
         {...getRootProps()} 
-        className="relative ml-4 max-md_searchMainWrap" 
-        tabIndex={-1}
+        className="relative ml-4 max-md_searchMainWrap"
       >
         <TextField
           size="small"
