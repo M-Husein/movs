@@ -2,6 +2,7 @@
 
 @layer components {
   .searchMainWrap {
+    opacity: 0;
     position: fixed;
     top: -100%;
     left: 0;
@@ -9,7 +10,6 @@
     margin: 0 auto;
     z-index: 1;
     padding: 5px;
-    opacity: 0;
     background-color: #1976d2;
   }
 
@@ -27,8 +27,8 @@
   }
   
   .searchMainWrap nav.MuiList-root {
-    max-height: calc(100vh - 64px);
-    min-height: calc(100vh - 64px);
+    max-height: calc(100vh - 55px);
+    min-height: calc(100vh - 55px);
   }
 }
 

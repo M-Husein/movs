@@ -26,7 +26,7 @@ export default function Page(){
 
   useDocumentTitle("Movie • " + import.meta.env.VITE_APP_NAME);
 
-  const [activeVideo, setActiveVideo] = useState<any>();
+  const [activeVideo, setActiveVideo] = useState<any>({});
 
   const {
     data,
@@ -36,6 +36,7 @@ export default function Page(){
   } = useOne<any, HttpError>({
     queryOptions: {
       retry: false,
+      enabled: !!id,
     },
     resource: "movie",
     id,
@@ -44,6 +45,12 @@ export default function Page(){
         language: currentLocale,
         append_to_response: "videos,images",
       }
+    },
+    successNotification: (data: any) => {
+      setActiveVideo(
+        data?.videos?.results.find((item: any) => item.type === 'Trailer')
+      );
+      return false;
     },
   });
 
@@ -88,22 +95,22 @@ export default function Page(){
   const loadingDetail = isLoading || isFetching || isRefetching;
 
   useEffect(() => {
-    setActiveVideo( // @ts-ignore
-      data?.videos?.results.find((item: any) => item.type === 'Trailer')
-    );
+    let lightbox: any;
 
-    let lightbox = new PhotoSwipeLightbox({
-      gallery: '#imagesGallery',
-      children: 'a',
-      pswpModule: () => import('photoswipe'),
-    });
-
-    lightbox.init();
+    if(!loadingDetail && data){
+      lightbox = new PhotoSwipeLightbox({
+        gallery: '#imagesGallery',
+        children: 'a',
+        pswpModule: () => import('photoswipe'),
+      });
+  
+      lightbox.init();
+    }
 
     return () => {
-      lightbox.destroy();
+      if(lightbox) lightbox.destroy();
     }
-  }, [data]);
+  }, [data, loadingDetail]);
 
   const removeMediaLoading = (e: any) => {
     e.target.classList.remove('bg-slate-300')
@@ -130,7 +137,11 @@ export default function Page(){
     },
   };
 
-  const renderNoVideo = (text?: any) => <div className="aspect-video bg-slate-300 lg_rounded-lg grid place-content-center text-lg text-gray-500">{text}</div>;
+  const renderNoVideo = (text?: any) => (
+    <div className="aspect-video bg-slate-300 lg_rounded-lg grid place-content-center text-lg text-gray-500">
+      {text}
+    </div>
+  );
 
   const renderVideo = () => {
     if(activeVideo){
@@ -364,8 +375,8 @@ export default function Page(){
                                 {new Date(data.release_date).getFullYear()}
                               </time>
 
-                              <ButtonAddFavorite
-                                data={data}
+                              <ButtonAddFavorite // @ts-ignore
+                                data={{ ...data, genre_ids: data.genres?.map((item: any) => item.id) }}
                                 size="small"
                                 sx={{ minWidth: 32, width: 32, borderRadius: '50%', float: 'right' }}
                               />
