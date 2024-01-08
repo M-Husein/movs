@@ -22,13 +22,7 @@ import {
   useLogin,
 } from "@refinedev/core";
 import { ContentCopyRounded } from "@mui/icons-material";
-
-// type RegisterVariables = {
-//   email: string;
-//   name: string;
-//   password: string;
-//   providerName: string;
-// };
+import { socialProviders } from '@/providers/socialProviders';
 
 const RegisterPage: React.FC<any> = ({
   loginLink,
@@ -63,209 +57,201 @@ const RegisterPage: React.FC<any> = ({
   const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
   const renderProviders = () => {
-    if (providers && providers.length > 0) {
-      return (
-        <>
-          <Stack spacing={1}>
-            {providers.map((provider: any) => {
-              return (
-                <Button
-                  key={provider.name}
-                  color="secondary"
-                  fullWidth
-                  variant="outlined"
-                  sx={{
-                    color: "primary.light",
-                    borderColor: "primary.light",
-                    textTransform: "none",
-                  }}
-                  onClick={() =>
-                    registerMutate({ // @ts-ignore
-                      name: 'John Doe',
-                      email: 'john.doe@email.com',
-                      password: 'password',
-                      providerName: provider.name,
-                    })
-                  }
-                  startIcon={provider.icon}
-                >
-                  {provider.label}
-                </Button>
-              );
-            })}
-          </Stack>
+    return (
+      <>
+        {!hideForm && (
+          <Divider
+            sx={{
+              fontSize: "18px",
+              marginY: "16px",
+            }}
+          >
+            {translate("pages.login.divider")}
+          </Divider>
+        )}
 
-          {!hideForm && (
-            <Divider
-              sx={{
-                fontSize: "12px",
-                marginY: "16px",
-              }}
-            >
-              {translate("pages.login.divider")}
-            </Divider>
-          )}
-        </>
-      );
-    }
-    return null;
+        <Stack spacing={1}>
+          {socialProviders.map((Provider: any) => {
+            return (
+              <Button
+                key={Provider.name}
+                color="secondary"
+                fullWidth
+                variant="outlined"
+                sx={{
+                  color: "primary.light",
+                  borderColor: "primary.light",
+                  textTransform: "none",
+                }}
+                onClick={() =>
+                  registerMutate({ 
+                    // Static register data
+                    // @ts-ignore
+                    name: 'Jane Doe',
+                    email: 'jane.doe@email.com',
+                    password: 'password',
+                    providerName: Provider.name,
+                  })
+                }
+                startIcon={<Provider.icon />}
+              >
+                {Provider.label}
+              </Button>
+            );
+          })}
+        </Stack>
+      </>
+    );
   };
 
   const Content = (
-    <Card {...(contentProps ?? {})}>
-      <CardContent sx={{ p: "32px", "&:last-child": { pb: "32px" } }}>
-        <Typography
-          component="h1"
-          variant="h5"
-          align="center"
-          color="primary"
-          fontWeight={700}
-          sx={{
-            textAlign: "center",
-            fontSize: "24px",
-            marginBottom: "24px",
-            overflowWrap: "break-word",
-            hyphens: "manual",
-            textOverflow: "unset",
-            whiteSpace: "pre-wrap",
-          }}
-        >
-          {translate("pages.register.title")}
-        </Typography>
+    <>
+      <img
+        width={85}
+        alt={import.meta.env.VITE_APP_NAME}
+        src="/images/logos/logo-96x96.png"
+        className="shadow-md rounded-full border-4 border-white relative block -mb-10 mx-auto"
+      />
 
-        {renderProviders()}
+      <Card {...(contentProps ?? {})}>
+        <CardContent sx={{ p: "32px", pt: 7, "&:last-child": { pb: "32px" } }}>
+          <p className="text-sm bg-orange-100 p-2 rounded-lg border border-orange-300">
+            Pay attention: this is not the original sign in. Don't insert your real credentials here!
+          </p>
+            
+          {!hideForm && (
+            <Box
+              component="form"
+              onSubmit={handleSubmit((data) => {
+                if (onSubmit) {
+                  return onSubmit(data);
+                }
+                return registerMutate(data, {
+                  onSuccess: (state: any) => {
+                    if(state.success){
+                      login(data);
+                    }
+                  },
+                });
+              })}
+            >
+              <TextField
+                {...register("email", {
+                  required: true,
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email address",
+                  },
+                })}
+                id="email"
+                margin="normal"
+                fullWidth
+                label="Email"
+                error={!!errors.email}
+                helperText={
+                  errors["email"] ? errors["email"].message : ""
+                }
+                name="email"
+                autoComplete="email"
+                sx={{
+                  mt: 0,
+                }}
+              />
+
+              <TextField // @ts-ignore
+                {...register("name", {
+                  required: true,
+                  pattern: {
+                    value: /^\S(.*\S)?$/,
+                    message: "No leading and trailing whitespace"
+                  },
+                })}
+                id="name"
+                margin="normal"
+                fullWidth
+                label="Name" // @ts-ignore
+                error={!!errors.name}
+                helperText={ // @ts-ignore
+                  errors["name"] ? errors["name"].message : ""
+                }
+                name="name"
+                autoComplete="name"
+              />
+
+              <TextField
+                {...register("password", {
+                  required: true,
+                })}
+                id="password"
+                margin="normal"
+                fullWidth
+                name="password"
+                label="Password"
+                helperText={
+                  errors["password"]
+                    ? errors["password"].message
+                    : ""
+                }
+                error={!!errors.password}
+                type="password"
+                autoComplete="current-password"
+                sx={{
+                  mb: 0,
+                }}
+              />
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                disabled={isLoading}
+                sx={{
+                  mt: "24px",
+                }}
+              >
+                Sign up
+              </Button>
+            </Box>
+          )}
+
+          {renderProviders()}
           
-        {!hideForm && (
-          <Box
-            component="form"
-            onSubmit={handleSubmit((data) => {
-              console.log('data: ', data)
-              if (onSubmit) {
-                return onSubmit(data);
-              }
-              return registerMutate(data, {
-                onSuccess: (state: any) => {
-                  if(state.success){
-                    login(data);
-                  }
-                },
-              });
-            })}
-          >
-            <TextField
-              {...register("email", {
-                required: true,
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Invalid email address",
-                },
-              })}
-              id="email"
-              margin="normal"
-              fullWidth
-              label="Email"
-              error={!!errors.email}
-              helperText={
-                errors["email"] ? errors["email"].message : ""
-              }
-              name="email"
-              autoComplete="email"
-              sx={{
-                mt: 0,
-              }}
-            />
-
-            <TextField // @ts-ignore
-              {...register("name", {
-                required: true,
-                pattern: {
-                  value: /^\S(.*\S)?$/,
-                  message: "No leading and trailing whitespace"
-                },
-              })}
-              id="name"
-              margin="normal"
-              fullWidth
-              label="Name" // @ts-ignore
-              error={!!errors.name}
-              helperText={ // @ts-ignore
-                errors["name"] ? errors["name"].message : ""
-              }
-              name="name"
-              autoComplete="name"
-            />
-
-            <TextField
-              {...register("password", {
-                required: true,
-              })}
-              id="password"
-              margin="normal"
-              fullWidth
-              name="password"
-              label="Password"
-              helperText={
-                errors["password"]
-                  ? errors["password"].message
-                  : ""
-              }
-              error={!!errors.password}
-              type="password"
-              autoComplete="current-password"
-              sx={{
-                mb: 0,
-              }}
-            />
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              disabled={isLoading}
+          {loginLink ?? (
+            <Box
+              display="flex"
+              justifyContent="flex-end"
+              alignItems="center"
               sx={{
                 mt: "24px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              Sign up
-            </Button>
-          </Box>
-        )}
-        
-        {loginLink ?? (
-          <Box
-            display="flex"
-            justifyContent="flex-end"
-            alignItems="center"
-            sx={{
-              mt: "24px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Typography
-              variant="body2"
-              component="span"
-              fontSize="14px"
-            >
-              {translate("pages.login.buttons.haveAccount")}
-            </Typography>
-            <MuiLink
-                ml="4px"
+              <Typography
                 variant="body2"
-                color="primary"
-                component={ActiveLink}
-                underline="none"
-                to="/login"
+                component="span"
                 fontSize="14px"
-                fontWeight="bold"
-            >
-              {translate("pages.login.signin")}
-            </MuiLink>
-          </Box>
-        )}
-      </CardContent>
-    </Card>
+              >
+                {translate("pages.login.buttons.haveAccount")}
+              </Typography>
+              <MuiLink
+                  ml="4px"
+                  variant="body2"
+                  color="primary"
+                  component={ActiveLink}
+                  underline="none"
+                  to="/login"
+                  fontSize="14px"
+                  fontWeight="bold"
+              >
+                {translate("pages.login.signin")}
+              </MuiLink>
+            </Box>
+          )}
+        </CardContent>
+      </Card>
+    </>
   );
 
   return (
