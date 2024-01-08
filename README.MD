@@ -5,14 +5,12 @@ Movie streaming web application like Netflix for users to see a real-time movie 
 
 ## Setup
 
-Fill in the [TMDB](https://www.themoviedb.org/settings/api) key and access token in the .env file:
+Fill in the [TMDB](https://www.themoviedb.org/settings/api) key and access token in the .env file :
 
 ```bash
 VITE_TMDB_API_KEY=your_api_key
 VITE_TMDB_ACCESS_TOKEN=your_access_token
 ```
-
-<br/>
 
 ### Install dependencies
 
@@ -20,9 +18,7 @@ VITE_TMDB_ACCESS_TOKEN=your_access_token
     npm install
 ```
 
-Then you can follow the steps below:
-
-<br/>
+Then you can follow the steps below :
 
 <div align="center" style="margin: 30px;">
     <a href="https://refine.dev">
