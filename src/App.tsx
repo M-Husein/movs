@@ -2,8 +2,7 @@ import { Refine } from "@refinedev/core";
 import { notificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
-import routerBindings, { DocumentTitleHandler, UnsavedChangesNotifier } from "@refinedev/react-router-v6";
-// import dataProvider from "@refinedev/simple-rest";
+import routerBindings, { DocumentTitleHandler } from "@refinedev/react-router-v6";
 import { dataProvider } from "@/providers/dataProvider";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter } from "react-router-dom";
@@ -27,7 +26,6 @@ export default function App() {
         <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
         <RefineSnackbarProvider>
           <Refine
-            // "https://api.fake-rest.refine.dev"
             dataProvider={dataProvider(import.meta.env.VITE_EXTENAL_API)}
             notificationProvider={notificationProvider}
             routerProvider={routerBindings}
@@ -36,14 +34,11 @@ export default function App() {
             resources={RESOURCES}
             options={{
               disableTelemetry: true,
-              syncWithLocation: true,
-              warnWhenUnsavedChanges: true,
               useNewQueryKeys: true,
             }}
           >
             <AppRoutes />
 
-            <UnsavedChangesNotifier />
             <DocumentTitleHandler />
           </Refine>
         </RefineSnackbarProvider>

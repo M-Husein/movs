@@ -45,7 +45,11 @@ export const ButtonAddFavorite = ({
         }
       }
     }catch(e){
-      // 
+      openNotif?.({
+        type: "error",
+        message: "Failed",
+        description: "Failed to save to favorites",
+      });
     }
   }
 

@@ -84,7 +84,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
               alt={import.meta.env.VITE_APP_NAME}
               width={40}
               height={40}
-              src="/images/logo.png"
+              src="/images/logos/logo.png"
               className="align-middle"
             />
           </Typography>
