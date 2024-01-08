@@ -262,35 +262,37 @@ const RegisterPage: React.FC<any> = ({
         backgroundImage: 'url("images/movie_poster_mix.jpg")',
       }}
     >
-      <Container
-        component="main"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: hideForm ? "flex-start" : "center",
-          alignItems: "center",
-          minHeight: "100dvh",
-          padding: "16px",
-          width: "100%",
-          maxWidth: "400px",
-        }}
-      >
-        <Box
+      <Box sx={{ backgroundColor: 'rgba(0,0,0,.2)' }}>
+        <Container
+          component="main"
           sx={{
-            width: "100%",
-            maxWidth: "400px",
             display: "flex",
             flexDirection: "column",
-            paddingTop: hideForm ? "15dvh" : 0,
+            justifyContent: hideForm ? "flex-start" : "center",
+            alignItems: "center",
+            minHeight: "100dvh",
+            padding: "16px",
+            width: "100%",
+            maxWidth: "400px",
           }}
         >
-          {renderContent ? (
-            renderContent(ContentCopyRounded)
-          ) : (
-            Content
-          )}
-        </Box>
-      </Container>
+          <Box
+            sx={{
+              width: "100%",
+              maxWidth: "400px",
+              display: "flex",
+              flexDirection: "column",
+              paddingTop: hideForm ? "15dvh" : 0,
+            }}
+          >
+            {renderContent ? (
+              renderContent(ContentCopyRounded)
+            ) : (
+              Content
+            )}
+          </Box>
+        </Container>
+      </Box>
     </Box>
   );
 };
