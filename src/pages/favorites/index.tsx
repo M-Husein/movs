@@ -52,7 +52,7 @@ export default function Page(){
           spacing={{ xs: 2, md: 3 }} 
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          {dataFavorites?.map((item: any) => (
+          {dataFavorites.map((item: any) => (
             <Grid 
               key={item.id} 
               item 
@@ -62,10 +62,10 @@ export default function Page(){
               component="article"
             >
               <Card className="h-full flex flex-col relative">
-                <Link to={"/movie/" + item.id} className="no-underline">
+                <Link to={"/movie/" + item.movieId} className="no-underline">
                   <CardMedia
                     component="img"
-                    alt={item.title || item.original_title}
+                    alt={item.title}
                     loading="lazy"
                     decoding="async"
                     image={"https://image.tmdb.org/t/p/w500" + item.backdrop_path}
@@ -86,26 +86,18 @@ export default function Page(){
                 </Button>
 
                 <CardContent className="h-full flex flex-col">
-                  <h1 className="text-base line-clamp-2 body-color">
+                  <h1 className="text-base line-clamp-2 body-color mb-0">
                     <Link 
-                      to={"/movie/" + item.id}
+                      to={"/movie/" + item.movieId}
                       className="no-underline body-color"
-                      title={item.title || item.original_title}
+                      title={item.title}
                     >
-                      {item.title || item.original_title}
+                      {item.title}
                     </Link>
                   </h1>
-                  <Typography 
-                    variant="body2" 
-                    color="text.secondary"
-                    className="line-clamp-3"
-                    sx={{ mt: 'auto' }}
-                  >
-                    {item.overview}
-                  </Typography>
                 </CardContent>
 
-                <CardActions>
+                <CardActions sx={{ paddingTop: 0 }}>
                   {isLoading || isFetching || isRefetching ?
                     <Skeleton width="60%" />
                     :
