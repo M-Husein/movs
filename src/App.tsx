@@ -1,5 +1,4 @@
 import { Refine } from "@refinedev/core";
-import { notificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import routerBindings, { DocumentTitleHandler } from "@refinedev/react-router-v6";
@@ -8,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { BrowserRouter } from "react-router-dom";
 import { authProvider } from "@/providers/authProvider";
 import { ColorModeContextProvider } from "@/contexts/color-mode";
+import { notificationProvider, RefineSnackbarProvider } from "@/providers/notificationProvider"; // @refinedev/mui
 import { RESOURCES, AppRoutes } from "@/routes";
 
 export default function App() {
