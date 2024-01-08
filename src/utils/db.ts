@@ -50,10 +50,4 @@ export const db = new Db();
       password: 'password',
     });
   }
-})()
-
-// await db.users.add({
-//   name: 'Jane Doe',
-//   email: 'jane.doe@email.com',
-//   password: 'password',
-// });
+})();

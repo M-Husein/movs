@@ -5,11 +5,26 @@ Movie streaming web application like Netflix for users to see a real-time movie 
 
 ## Setup
 
-Fill in the [TMDB](https://www.themoviedb.org/settings/api) key and access token in the .env file :
+Copy and rename .env.example file to .env, then fill in the [TMDB](https://www.themoviedb.org/settings/api) key and access token in the .env file :
 
 ```bash
 VITE_TMDB_API_KEY=your_api_key
 VITE_TMDB_ACCESS_TOKEN=your_access_token
+```
+
+## NOTES:
+
+Pay attention: this is not the original sign in. Don't insert your real credentials here!
+User data is stored in [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API).
+
+Available user:
+
+```json
+{
+    "name": "John Doe",
+    "email": "john.doe@email.com",
+    "password": "password",
+}
 ```
 
 ### Install dependencies
