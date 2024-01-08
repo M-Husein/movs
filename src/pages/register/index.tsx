@@ -246,7 +246,7 @@ const RegisterPage: React.FC<any> = ({
             <Typography
               variant="body2"
               component="span"
-              fontSize="12px"
+              fontSize="14px"
             >
               {translate("pages.login.buttons.haveAccount")}
             </Typography>
@@ -257,7 +257,7 @@ const RegisterPage: React.FC<any> = ({
                 component={ActiveLink}
                 underline="none"
                 to="/login"
-                fontSize="12px"
+                fontSize="14px"
                 fontWeight="bold"
             >
               {translate("pages.login.signin")}

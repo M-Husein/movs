@@ -227,14 +227,14 @@ const LoginPage: React.FC<any> = ({
               textAlign="center"
               variant="body2"
               component="span"
-              fontSize="12px"
+              fontSize="14px"
             >
               {translate("pages.login.buttons.noAccount")}
             </Typography>
             
             <MuiLink
               ml="4px"
-              fontSize="12px"
+              fontSize="14px"
               variant="body2"
               color="primary"
               component={ActiveLink}
