@@ -107,7 +107,7 @@ const LoginPage: React.FC<any> = ({
         src="/images/logos/logo-96x96.png"
         className="shadow-md rounded-full border-4 border-white relative block -mb-10 mx-auto"
       />
-      
+
       <Card {...(contentProps ?? {})}>
         <CardContent sx={{ p: "32px", pt: 7, "&:last-child": { pb: "32px" } }}>
           <p className="text-sm bg-orange-100 p-2 rounded-lg border border-orange-300">
@@ -254,35 +254,37 @@ const LoginPage: React.FC<any> = ({
           backgroundImage: 'url("images/movie_poster_mix.jpg")',
         }} 
       >
-        <Container
-          component="main"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: hideForm ? "flex-start" : "center",
-            alignItems: "center",
-            minHeight: "100dvh",
-            padding: "16px",
-            width: "100%",
-            maxWidth: "400px",
-          }}
-        >
-          <Box
+        <Box sx={{ backgroundColor: 'rgba(0,0,0,.2)' }}>
+          <Container
+            component="main"
             sx={{
-              width: "100%",
-              maxWidth: "400px",
               display: "flex",
               flexDirection: "column",
-              paddingTop: hideForm ? "15dvh" : 0,
+              justifyContent: hideForm ? "flex-start" : "center",
+              alignItems: "center",
+              minHeight: "100dvh",
+              padding: "16px",
+              width: "100%",
+              maxWidth: "400px",
             }}
           >
-            {renderContent ? (
-              renderContent(Content)
-            ) : (
-              Content
-            )}
-          </Box>
-        </Container>
+            <Box
+              sx={{
+                width: "100%",
+                maxWidth: "400px",
+                display: "flex",
+                flexDirection: "column",
+                paddingTop: hideForm ? "15dvh" : 0,
+              }}
+            >
+              {renderContent ? (
+                renderContent(Content)
+              ) : (
+                Content
+              )}
+            </Box>
+          </Container>
+        </Box>
       </Box>
     </FormProvider>
   );
