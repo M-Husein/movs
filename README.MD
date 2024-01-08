@@ -30,7 +30,7 @@ Available user:
 ### Install dependencies
 
 ```bash
-    npm install
+npm install
 ```
 
 Then you can follow the steps below :
@@ -55,19 +55,19 @@ Refine's hooks and components simplifies the development process and eliminates 
 ### Running the development server.
 
 ```bash
-    npm run dev
+npm run dev
 ```
 
 ### Building for production.
 
 ```bash
-    npm run build
+npm run build
 ```
 
 ### Running the production server.
 
 ```bash
-    npm run start
+npm run start
 ```
 
 ## Learn More

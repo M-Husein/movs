@@ -119,7 +119,7 @@ export default function Page(){
                   pauseOnMouseEnter: true,
                 }}
                 modules={[Navigation, Autoplay]}
-                className="aspect-video rounded-lg"
+                className="aspect-video lg_rounded-lg"
               >
                 {(dataNowPlaying?.results || []).map((item: any) =>
                   <SwiperSlide key={item.id}>
@@ -141,7 +141,7 @@ export default function Page(){
                             loading="lazy"
                             decoding="async"
                             alt={item.title || item.original_title}
-                            src={"https://image.tmdb.org/t/p/original" + item.poster_path}
+                            src={"https://image.tmdb.org/t/p/w500" + item.poster_path}
                             className="bg-slate-300 block text-0 object-cover shadow-lg rounded-lg border-2 border-gray-100"
                             onLoad={removeMediaLoading}
                             width={135}

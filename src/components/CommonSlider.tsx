@@ -53,7 +53,8 @@ export const CommonSlider = ({
           modules={[Navigation]}
           className="py-2"
           style={{ // @ts-ignore
-            '--swiper-navigation-size': '30px',
+            '--swiper-navigation-size': '25px',
+            '--swiper-navigation-top-offset': '45%',
           }}
         >
           {data.map((item: any) => (
