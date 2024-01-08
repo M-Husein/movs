@@ -1,15 +1,18 @@
 # movs
 
-movie streaming web application like Netflix for users to see a real-time movie list and add titles to their favourite list.
+Movie streaming web application like Netflix for users to see a real-time movie list and add titles to their favourite list.
 <br/>
 
 ## Setup
 
-Fill in the [TMDB](VITE_TMDB_ACCESS_TOKEN=your_access_token) key and access token in the .env file:
-https://www.themoviedb.org/settings/api
+Fill in the [TMDB](https://www.themoviedb.org/settings/api) key and access token in the .env file:
 
+```bash
 VITE_TMDB_API_KEY=your_api_key
 VITE_TMDB_ACCESS_TOKEN=your_access_token
+```
+
+<br/>
 
 ### Install dependencies
 
