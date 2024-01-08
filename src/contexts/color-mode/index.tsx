@@ -1,9 +1,4 @@
-import {
-  PropsWithChildren,
-  createContext,
-  useEffect,
-  useState,
-} from "react";
+import { PropsWithChildren, createContext, useEffect, useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { RefineThemes } from "@refinedev/mui";
 
@@ -21,7 +16,7 @@ const toggleTheme = (isDark: boolean) => {
   html.classList.toggle("dark", isDark);
   let metaTheme = html.querySelector('meta[name=theme-color]') as any;
   if(metaTheme){
-    metaTheme.content = getComputedStyle(html).getPropertyValue('--q-bg-nav'); // --q-bg-main
+    metaTheme.content = getComputedStyle(html).getPropertyValue('--q-bg-nav');
   }
 }
 

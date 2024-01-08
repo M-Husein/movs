@@ -30,10 +30,7 @@ export default function Page(){
   const [dataToRemove, setDataToRemove] = useState<any>();
 
   const dataFavorites = useLiveQuery(async () => {
-    return await db.favorites
-      .where("userId")
-      .equals(user.id)
-      .toArray();
+    return await db.favorites.where("userId").equals(user.id).toArray();
   });
 
   const removeItem = async () => {
