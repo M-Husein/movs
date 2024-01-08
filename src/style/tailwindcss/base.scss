@@ -1,0 +1,40 @@
+@tailwind base;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border: 0 solid #e5e7eb;
+  }
+
+  hr {
+    margin: 1rem 0;
+    color: inherit;
+    border: 0;
+    border-top: 1px solid #d9d9d9;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 500;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+}
+
+// Always compile Here

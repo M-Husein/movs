@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <meta name="application-name" content="%VITE_APP_NAME%" />
+    <meta name="description" content="%VITE_APP_DESCRIPTION%" />
+    <meta property="og:title" content="%VITE_APP_NAME%"/>
+    <meta property="og:description" content="%VITE_APP_DESCRIPTION%" />
+    <meta name="twitter:title" content="%VITE_APP_NAME%"/>
+    <meta name="twitter:description" content="%VITE_APP_DESCRIPTION%" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <style>
+    :root{
+      --q-bg-main:#ffffff;
+      --q-bg-nav:#1976D2
+    }
+    #_splashScreen,.nojs{
+      position:fixed;
+      background-color:var(--q-bg-main)
+    }
+    .load-spin,.nojs{
+      display:grid;
+      place-content:center;
+      text-align:center
+    }
+    .load-spin{
+      user-select:none;
+      z-index:1055;
+      cursor:wait
+    }
+    .svg-spin{
+      color:#007bff;
+      -webkit-animation:loads 2s linear infinite;
+      animation:loads 2s linear infinite
+    }
+    .svg-spin circle{
+      fill:none;
+      stroke:currentColor;
+      stroke-dasharray:1,150;
+      stroke-dashoffset:0;
+      stroke-linecap:round;
+      -webkit-animation:dashLoad 1.5s ease-in-out infinite;
+      animation:dashLoad 1.5s ease-in-out infinite
+    }
+    .inset-0{
+      inset:0
+    }
+    @keyframes loads{
+      100%{transform:rotate(360deg)}
+    }
+    @-webkit-keyframes loads{
+      100%{-webkit-transform:rotate(360deg)}
+    }
+    @keyframes dashLoad{
+      0%{
+        stroke-dasharray:1,150;
+        stroke-dashoffset:0
+      }
+      50%{
+        stroke-dasharray:90,150;
+        stroke-dashoffset:-35
+      }
+      100%{
+        stroke-dasharray:90,150;
+        stroke-dashoffset:-124
+      }
+    }
+    @-webkit-keyframes dashLoad{
+      0%{
+        stroke-dasharray:1,150;
+        stroke-dashoffset:0
+      }
+      50%{
+        stroke-dasharray:90,150;
+        stroke-dashoffset:-35
+      }
+      100%{
+        stroke-dasharray:90,150;
+        stroke-dashoffset:-124
+      }
+    }
+    </style>
+    <title>%VITE_APP_NAME%</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="_splashScreen" class="load-spin inset-0">
+      <!-- <img aria-hidden="true" src="/logo-32x32.png" alt="MYCO" class="inset-0" style="position:fixed;margin:auto" /> -->
+      <svg class="svg-spin" width="75" height="75" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" stroke-width="3"/></svg>
+    </div>
+    <noscript>
+      <style>
+      #_splashScreen{
+        display:none
+      }
+      .nojs{
+        font-family:Arial
+      }
+      </style>
+      <div data-nosnippet="true" aria-hidden="true" class="inset-0 nojs">
+        <p data-nosnippet="true">You need to enable JavaScript to run this app.</p>
+        <a data-nosnippet="true" rel="noopener noreferrer nofollow" target="_blank" href="https://www.enablejavascript.io">GUIDE</a>
+      </div>
+    </noscript>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>
