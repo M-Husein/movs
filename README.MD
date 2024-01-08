@@ -7,9 +7,12 @@ Movie streaming web application like Netflix for users to see a real-time movie 
 
 Fill in the [TMDB](https://www.themoviedb.org/settings/api) key and access token in the .env file:
 
+```bash
 VITE_TMDB_API_KEY=your_api_key
-<br/>
 VITE_TMDB_ACCESS_TOKEN=your_access_token
+```
+
+<br/>
 
 ### Install dependencies
 
