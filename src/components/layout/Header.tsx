@@ -9,8 +9,10 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
+import Divider from '@mui/material/Divider';
 import DarkModeOutlined from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlined from "@mui/icons-material/LightModeOutlined";
+import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
 import { useGetIdentity, useGetLocale, useSetLocale, useTranslate, useActiveAuthProvider, useLogout, useWarnAboutChange } from "@refinedev/core";
 import { RefineThemedLayoutV2HeaderProps } from "@refinedev/mui"; // HamburgerMenu, 
@@ -31,9 +33,7 @@ const LANGUAGE: any = {
   id: "Indonesia",
 };
 
-export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
-  sticky = true,
-}) => {
+export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const { mode, setMode } = useContext(ColorModeContext);
   const { data: user } = useGetIdentity<IUser>();
   const authProvider = useActiveAuthProvider();
@@ -69,7 +69,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   }
 
   return (
-    <AppBar position={sticky ? "sticky" : "relative"}>
+    <AppBar position="sticky">
       <Toolbar className="max-w-screen-xl w-full mx-auto">
         <Stack direction="row" width="100%" alignItems="center">
           {/* <HamburgerMenu /> */}
@@ -110,7 +110,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
               <Select
                 disableUnderline
                 autoWidth
-                defaultValue={currentLocale}
+                value={currentLocale}
                 variant="standard"
                 sx={{
                   color: "inherit",
@@ -130,15 +130,13 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                 }}
               >
                 {[...(i18n.languages ?? [])].sort().map((lang: string) => (
-                  // @ts-ignore
                   <MenuItem
-                    selected={currentLocale === lang}
                     key={lang}
-                    defaultValue={lang}
+                    selected={currentLocale === lang}
+                    value={lang}
                     onClick={() => {
                       changeLanguage(lang);
                     }}
-                    value={lang}
                   >
                     <Stack
                       direction="row"
@@ -147,8 +145,8 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                     >
                       <Avatar
                         sx={{
-                          width: "24px",
-                          height: "24px",
+                          width: 24,
+                          height: 24,
                           marginRight: "9px",
                         }}
                         src={`/images/flags/${lang}.svg`}
@@ -164,9 +162,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
 
             <IconButton
               color="inherit"
-              onClick={() => {
-                setMode()
-              }}
+              onClick={() => setMode()}
             >
               {mode === "dark" ? <LightModeOutlined /> : <DarkModeOutlined />}
             </IconButton>
@@ -185,7 +181,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                     vertical: 'top',
                     horizontal: 'right',
                   }}
-                  // keepMounted
+                  keepMounted
                   transformOrigin={{
                     vertical: 'top',
                     horizontal: 'right',
@@ -193,8 +189,13 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                   open={!!anchorElUser}
                   onClose={handleCloseUserMenu}
                 >
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    {user?.name}
+                  </MenuItem>
+                  <Divider />
                   <MenuItem onClick={handleLogout}>
-                    <Typography textAlign="center">Logout</Typography>
+                    <LogoutIcon fontSize="small" className="mr-2" />
+                    Logout
                   </MenuItem>
                 </Menu>
               </Box>

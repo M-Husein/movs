@@ -1,7 +1,6 @@
 import { AuthBindings } from "@refinedev/core";
 import { db } from '@/utils/db';
 
-// const BASE_API = import.meta.env.VITE_API;
 const TOKEN_KEY = "user";
 
 const clearLocalData = () => {
@@ -11,8 +10,10 @@ const clearLocalData = () => {
 export const authProvider: AuthBindings = {
   register: async ({ email, name, password, providerName, redirectPath }) => {
     const checkAvailable = await db.users
-          .where('email').equals(email)
-          .limit(1).toArray();
+      .where('email')
+      .equals(email)
+      .limit(1)
+      .toArray();
 
     if(checkAvailable?.length){
       return {
@@ -111,14 +112,12 @@ export const authProvider: AuthBindings = {
 
     if(user){
       try {
-        // const req: any = await axios(BASE_API + '/me', {
-        //   headers: {
-        //     Authorization: 'Bearer ' + token,
-        //   }
-        // });
-
         // @ts-ignore
-        const req = await db.users.where('email').equals(JSON.parse(user).email).limit(1).toArray();
+        const req = await db.users
+          .where('email')
+          .equals(JSON.parse(user).email)
+          .limit(1)
+          .toArray();
   
         if(req?.length){
           return { authenticated: true }
@@ -145,7 +144,7 @@ export const authProvider: AuthBindings = {
 
     return null;
   },
-  forgotPassword: async () => { // { username } | email
+  forgotPassword: async () => {
     const errorResponse = {
       success: false,
       error: {
@@ -155,21 +154,6 @@ export const authProvider: AuthBindings = {
     };
 
     return errorResponse;
-
-    // try { // send password reset link to the user's email address here
-    //   const req: any = await axios(BASE_API + '/authentication/forgot-password/' + username);
-      
-    //   if(req?.success){ // if request is successful
-    //     return {
-    //       success: true,
-    //       redirectTo: "/login",
-    //     };
-    //   }
-    //   // if request is not successful
-    //   return errorResponse;
-    // } catch(e){
-    //   return errorResponse;
-    // }
   },
   onError: async (error) => {
     // Request abort / cancel

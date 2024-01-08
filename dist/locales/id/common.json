@@ -34,24 +34,11 @@
         "haveAccount": "Sudah memiliki akun?"
       }
     },
-    "updatePassword": {
-      "title": "Update password",
-      "fields": {
-        "password": "New Password",
-        "confirmPassword": "Confirm new password"
-      },
-      "errors": {
-        "confirmPasswordNotMatch": "Passwords do not match"
-      },
-      "buttons": {
-        "submit": "Update"
-      }
-    },
     "error": {
       "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
-      "404": "Sorry, the page you visited does not exist.",
+      "404": "Maaf, halaman yang Anda kunjungi tidak ada.",
       "resource404": "Are you sure you have created the {{resource}} resource.",
-      "backHome": "Back Home",
+      "backHome": "Kembali ke Home",
       "unspecific": "Terjadi Kesalahan"
     }
   },
@@ -101,5 +88,6 @@
   },
   "table": {
     "actions": "Actions"
-  }
+  },
+  "attentionAuth": "Perhatikan: ini bukan login asli. Jangan masukkan kredensial asli Anda di sini."
 }

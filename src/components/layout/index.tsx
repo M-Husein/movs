@@ -7,7 +7,7 @@ export function Layout({
 }: RefineLayoutLayoutProps){
   return (
     <>
-      <Header sticky />
+      <Header />
 
       <Box
         component="main"

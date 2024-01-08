@@ -107,7 +107,7 @@ export default function Page(){
         <Grid item lg={9} xs={12}>
           <div className="relative aspect-video mb-8">
             {loadingNowPlaying ?
-              <div className="aspect-video bg-slate-300 rounded-lg" />
+              <div className="aspect-video bg-slate-300 lg_rounded-lg" />
               :
               <Swiper
                 loop
@@ -119,6 +119,10 @@ export default function Page(){
                   pauseOnMouseEnter: true,
                 }}
                 modules={[Navigation, Autoplay]}
+                style={{ // @ts-ignore
+                  '--swiper-navigation-size': '30px',
+                  '--swiper-navigation-top-offset': '43%',
+                }}
                 className="aspect-video lg_rounded-lg"
               >
                 {(dataNowPlaying?.results || []).map((item: any) =>
@@ -138,14 +142,14 @@ export default function Page(){
                       <div className="flex items-end justify-end absolute bottom-0 left-0 right-0 p-4 bg-dark-bottom pointer-events-none">
                         <div className="flex-none mr-4 pointer-events-auto relative max-md_hidden">
                           <img
+                            width={135}
+                            height={202}
                             loading="lazy"
                             decoding="async"
                             alt={item.title || item.original_title}
                             src={"https://image.tmdb.org/t/p/w500" + item.poster_path}
                             className="bg-slate-300 block text-0 object-cover shadow-lg rounded-lg border-2 border-gray-100"
                             onLoad={removeMediaLoading}
-                            width={135}
-                            height={202}
                           />
 
                           <ButtonAddFavorite
@@ -158,10 +162,10 @@ export default function Page(){
                         <div className="grow text-left flex items-center text-white">
                           <PlayCircleOutlineIcon sx={{ fontSize: 82 }} className="homePlayIcon" />
 
-                          <div className="text-3xl ml-4">
-                            {item.title || item.original_title}
+                          <div className="ml-4">
+                            <div className="lg_text-2xl text-xl">{item.title || item.original_title}</div>
 
-                            <div className="text-gray-300 text-lg mt-2">Watch the Trailer</div>
+                            <div className="text-gray-300 lg_text-lg mt-2">Watch the Trailer</div>
                           </div>
                         </div>
                       </div>

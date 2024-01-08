@@ -7,6 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import IconButton from '@mui/material/IconButton';
 import CircularProgress from '@mui/material/CircularProgress';
+import Avatar from '@mui/material/Avatar';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { useAutocomplete } from '@mui/base/useAutocomplete';
@@ -128,7 +129,7 @@ export function Search(){
             sx={{ 
               position: 'absolute', 
               left: 0, 
-              right: 0, 
+              right: 0,
               top: '100%', 
               width: '100%', 
               overflowY: 'auto',
@@ -144,27 +145,21 @@ export function Search(){
                 key={option.id + index}
                 component={Link} 
                 to={"/movie/" + option.id}
-                // sx={{ color: '#333' }}
                 className="body-color"
               >
                 <ListItemAvatar>
-                  {option.backdrop_path ?
-                    <img
-                      width={47}
-                      height={47}
-                      loading="lazy"
-                      decoding="async"
-                      alt={option.title || option.original_title}
-                      src={"https://image.tmdb.org/t/p/w500" + option.backdrop_path}
-                      className="bg-slate-300 block text-0 object-cover rounded-lg"
-                      onLoad={(e: any) => e.target.classList.remove('bg-slate-300')}
-                    />
-                    :
-                    <div
-                      style={{ width: 47, height: 47 }}
-                      className="bg-slate-300 rounded-lg"
-                    />
-                  }
+                  <Avatar
+                    variant="rounded"
+                    sx={{ width: 47, height: 47 }}
+                    imgProps={{
+                      loading: "lazy",
+                      decoding: "async",
+                      className: "bg-slate-300",
+                      onLoad: (e: any) => e.target.classList.remove('bg-slate-300'),
+                    }}
+                    alt={option.title || option.original_title}
+                    src={"https://image.tmdb.org/t/p/w500" + option.backdrop_path}
+                  />
                 </ListItemAvatar>
                 <ListItemText 
                   primary={option.title || option.original_title} 
@@ -182,7 +177,6 @@ export function Search(){
         aria-label="Search" 
         className="lg_!hidden" 
         sx={{ mx: 1 }}
-        tabIndex={-1}
       >
         <SearchIcon sx={{ color: '#fff' }} />
       </IconButton>
