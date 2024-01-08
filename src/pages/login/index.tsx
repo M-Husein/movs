@@ -110,7 +110,7 @@ const LoginPage: React.FC<any> = ({
 
       <Card {...(contentProps ?? {})}>
         <CardContent sx={{ p: "32px", pt: 7, "&:last-child": { pb: "32px" } }}>
-          <p className="text-sm bg-orange-100 p-2 rounded-lg border border-orange-300">
+          <p className="text-sm bg-orange-100 bg-theme p-2 rounded-lg border border-orange-300">
             Pay attention: this is not the original sign in. Don't insert your real credentials here!
           </p>
 

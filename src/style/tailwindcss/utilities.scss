@@ -1,10 +1,6 @@
 @tailwind utilities;
 
 @layer utilities {
-  .bg-theme {
-    background-color: #f5f5f5;
-  }
-
   .dark .bg-theme {
     background-color: #141414;
   }
