@@ -1,49 +1,49 @@
 {
   "pages": {
     "login": {
-      "title": "Sign in to your account",
+      "title": "Masuk ke akun Anda",
       "signin": "Sign in",
       "signup": "Sign up",
-      "divider": "or",
+      "divider": "atau",
       "fields": {
         "email": "Email",
         "password": "Password"
       },
       "errors": {
-        "validEmail": "Invalid email address"
+        "validEmail": "Alamat email salah"
       },
       "buttons": {
         "submit": "Login",
-        "forgotPassword": "Forgot password?",
-        "noAccount": "Don't have an account?",
+        "forgotPassword": "Lupa kata sandi?",
+        "noAccount": "Tidak punya akun?",
         "rememberMe": "Remember me",
-        "haveAccount": "Have an account?"
+        "haveAccount": "Punya akun?"
       }
     },
     "forgotPassword": {
-      "title": "Forgot your password?",
+      "title": "Lupa kata sandi Anda?",
       "fields": {
         "email": "Email"
       },
       "errors": {
-        "validEmail": "Invalid email address"
+        "validEmail": "Alamat email salah"
       },
       "buttons": {
         "submit": "Send reset instructions"
       }
     },
     "register": {
-      "title": "Sign up for your account",
+      "title": "Daftar akun Anda",
       "fields": {
         "email": "Email",
         "password": "Password"
       },
       "errors": {
-        "validEmail": "Invalid email address"
+        "validEmail": "Alamat email salah"
       },
       "buttons": {
         "submit": "Register",
-        "haveAccount": "Have an account?"
+        "haveAccount": "Sudah memiliki akun?"
       }
     },
     "updatePassword": {
@@ -64,7 +64,7 @@
       "404": "Sorry, the page you visited does not exist.",
       "resource404": "Are you sure you have created the {{resource}} resource.",
       "backHome": "Back Home",
-      "unspecific": "Something went wrong"
+      "unspecific": "Terjadi Kesalahan"
     }
   },
   "actions": {
@@ -92,14 +92,14 @@
   },
   "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
   "notifications": {
-    "success": "Successful",
+    "success": "Sukses",
     "error": "Error (status code: {{statusCode}})",
     "undoable": "You have {{seconds}} seconds to undo",
-    "createSuccess": "Successfully created {{resource}}",
+    "createSuccess": "Berhasil membuat {{resource}}",
     "createError": "There was an error creating {{resource}} (status code: {{statusCode}})",
-    "deleteSuccess": "Successfully deleted {{resource}}",
+    "deleteSuccess": "Berhasil menghapus {{resource}}",
     "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
-    "editSuccess": "Successfully edited {{resource}}",
+    "editSuccess": "Berhasil edit {{resource}}",
     "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
     "importProgress": "Importing: {{processed}}/{{total}}"
   },

@@ -1,5 +1,5 @@
 import { AuthPage } from "@refinedev/mui";
 
-export const ForgotPassword = () => {
+export default function ForgotPassword(){
   return <AuthPage type="forgotPassword" />;
 };

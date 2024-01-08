@@ -1,0 +1,71 @@
+@tailwind components;
+
+@layer components {
+  .searchMainWrap {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 1;
+    padding: 5px;
+    opacity: 0;
+    background-color: #1976D2;
+  }
+
+  .dark .searchMainWrap {
+    background-color: #222;
+  }
+
+  .searchMainWrap .MuiFormControl-root {
+    width: 100%;
+  }
+
+  .searchMainWrap:focus-within {
+    top: auto;
+    opacity: 1;
+  }
+  
+  .searchMainWrap nav.MuiList-root {
+    max-height: calc(100vh - 64px);
+    min-height: calc(100vh - 64px);
+  }
+}
+
+// Always compile Here
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-button-prev, 
+.swiper-button-next {
+  width: auto;
+  height: auto;
+  padding: 5px;
+  background-color: rgba(18, 18, 18, .45);
+  border: 2px solid #dee2e6;
+  border-radius: 5px;
+}
+
+.swiper-button-prev:not(:hover), 
+.swiper-button-next:not(:hover) {
+  color: #dee2e6;
+}
+
+.link-drop:hover ~ div .homePlayIcon {
+  @apply text-blue-500;
+}
+
+// Search form in navbar
+.searchMain .MuiInputBase-root,
+.searchMain .MuiInputAdornment-root,
+#searchMain {
+  color: #fff;
+}
+
+.searchMain fieldset {
+  border-color: #fff !important;
+}
