@@ -1,9 +1,9 @@
 import { ReactNode, ErrorInfo, Component } from 'react';
-import i18n from "@/i18n";
 import { Link } from "react-router-dom";
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Button from '@mui/material/Button';
+import i18n from "@/i18n";
 
 interface ErrorBoundaryProps {
   children?: ReactNode;
@@ -30,9 +30,13 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
   render() {
     return this.state.hasError ? (
-      <Alert severity="error">
-        <AlertTitle>
-          {i18n.t('error.unspecific')}
+      <Alert 
+        severity="error" 
+        sx={{ py: 2 }}
+        className="grid place-content-center my-4"
+      >
+        <AlertTitle sx={{ mb: 2 }}>
+          {i18n.t('pages.error.unspecific', 'Something went wrong')}
         </AlertTitle>
 
         {!navigator.onLine && <p><strong>No internet connection</strong></p>}
@@ -42,7 +46,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
           to="/"
           variant="outlined"
         >
-          {i18n.t('error.backHome')}
+          {i18n.t('pages.error.backHome')}
         </Button>
       </Alert>
     )

@@ -27,10 +27,10 @@ export default function App() {
         <RefineSnackbarProvider>
           <Refine
             dataProvider={dataProvider(import.meta.env.VITE_EXTENAL_API)}
-            notificationProvider={notificationProvider}
-            routerProvider={routerBindings}
             authProvider={authProvider}
             i18nProvider={i18nProvider}
+            routerProvider={routerBindings}
+            notificationProvider={notificationProvider}
             resources={RESOURCES}
             options={{
               disableTelemetry: true,
