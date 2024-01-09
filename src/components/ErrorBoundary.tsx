@@ -36,7 +36,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
         className="grid place-content-center my-4"
       >
         <AlertTitle sx={{ mb: 2 }}>
-          {i18n.t('pages.error.unspecific', 'Something went wrong')}
+          {i18n.t('pages.error.unspecific')}
         </AlertTitle>
 
         {!navigator.onLine && <p><strong>No internet connection</strong></p>}
