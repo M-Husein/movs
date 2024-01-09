@@ -116,6 +116,11 @@ export default function Page(){
     e.target.classList.remove('bg-slate-300')
   }
 
+  const doClick = (e: any) => {
+    e.preventDefault();
+    e.target.click();
+  }
+
   const styleSmallSlider: any = { // @ts-ignore
     '--swiper-navigation-size': '20px',
     '--swiper-navigation-top-offset': '40%',
@@ -242,9 +247,13 @@ export default function Page(){
                 <Card
                   className="w-full h-full cursor-pointer"
                   component="a"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   href={"https://image.tmdb.org/t/p/original" + item.file_path}
                   data-pswp-width={item.width}
                   data-pswp-height={item.height}
+                  onAuxClick={doClick}
+                  onContextMenu={doClick}
                 >
                   <CardMedia
                     component="img"
