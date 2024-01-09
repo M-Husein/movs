@@ -70,10 +70,10 @@ const lazyComponent = (Element: any, loading?: any) => {
         fallback={
           loading || (
             <div 
-              className="max-w-screen-xl mx-auto grid place-content-center"
+              className="grid place-content-center"
               style={{ minHeight: 'calc(100vh - 64px)' }}
             >
-              <CircularProgress color="warning" size={75} thickness={3} />
+              <CircularProgress sx={{ color: '#ff3a00' }} size={75} thickness={3} />
             </div>
           )
         }
