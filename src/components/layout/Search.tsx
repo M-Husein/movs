@@ -175,7 +175,7 @@ export function Search(){
         component="label"
         htmlFor="searchMain"
         aria-label="Search" 
-        className="lg_!hidden" 
+        className="md_!hidden"
         sx={{ mx: 1 }}
       >
         <SearchIcon sx={{ color: '#fff' }} />

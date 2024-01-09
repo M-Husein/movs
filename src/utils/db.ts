@@ -1,7 +1,7 @@
 import Dexie from 'dexie';
 
 export interface IUsers {
-  id?: number; // Primary key. Optional (autoincremented)
+  id?: number; // Primary key (autoincremented)
   email: string;
   name: string;
   password: string;
@@ -9,7 +9,7 @@ export interface IUsers {
 }
 
 export interface IFavorites {
-  id?: number; // Primary key. Optional (autoincremented)
+  id?: number; // Primary key (autoincremented)
   movieId: number | string;
   userId: number | string;
   title: string;
