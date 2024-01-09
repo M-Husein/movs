@@ -207,7 +207,7 @@ export default function Page(){
                   />
                   <PlayCircleOutlineIcon 
                     fontSize="large" 
-                    className={"absolute inset-0 m-auto rounded-full shadow-lg " + (activeVideo?.id === item.id ? "text-blue-500" : "text-white")}
+                    className={"absolute inset-0 m-auto rounded-full shadow-lg " + (activeVideo.id === item.id ? "text-blue-500" : "text-white")}
                   />
                 </Card>
               </SwiperSlide>
