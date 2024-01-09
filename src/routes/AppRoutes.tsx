@@ -2,7 +2,6 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route, Outlet } from "react-router-dom";
 import { Authenticated } from "@refinedev/core";
 import { CatchAllNavigate, NavigateToResource } from "@refinedev/react-router-v6";
-import Skeleton from '@mui/material/Skeleton';
 import CircularProgress from '@mui/material/CircularProgress';
 import { ErrorComponent } from "@refinedev/mui";
 import { ErrorBoundary } from '@/components/ErrorBoundary';

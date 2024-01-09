@@ -3,18 +3,20 @@ import detector from "i18next-browser-languagedetector";
 import Backend from "i18next-xhr-backend";
 import { initReactI18next } from "react-i18next";
 
+const LANGS = ["en", "id"];
+
 i18n
   .use(Backend)
   .use(detector)
   .use(initReactI18next)
   .init({
-    supportedLngs: ["en", "id"],
+    supportedLngs: LANGS,
     backend: {
       loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
     ns: ["common"],
     defaultNS: "common",
-    fallbackLng: ["en", "id"],
+    fallbackLng: LANGS,
   });
 
 export default i18n;

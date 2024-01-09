@@ -112,7 +112,6 @@ export const authProvider: AuthBindings = {
 
     if(user){
       try {
-        // @ts-ignore
         const req = await db.users
           .where('email')
           .equals(JSON.parse(user).email)
