@@ -73,7 +73,7 @@ export const CommonSlider = ({
                     />
                     :
                     <div className="bg-slate-300 aspect-video grid place-content-center">
-                      No Image
+                      <b>No Image</b>
                     </div>
                   }
                 </Link>
