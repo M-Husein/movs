@@ -144,7 +144,7 @@ export default function Page(){
 
   const renderNoVideo = (text?: any) => (
     <div className="aspect-video bg-slate-300 lg_rounded-lg grid place-content-center text-lg text-gray-500">
-      {text}
+      {text && <b>{text}</b>}
     </div>
   );
 
@@ -212,7 +212,7 @@ export default function Page(){
                   />
                   <PlayCircleOutlineIcon 
                     fontSize="large" 
-                    className={"absolute inset-0 m-auto rounded-full shadow-lg " + (activeVideo.id === item.id ? "text-blue-500" : "text-white")}
+                    className={"absolute inset-0 m-auto rounded-full shadow-lg " + (activeVideo?.id === item.id ? "text-blue-500" : "text-white")}
                   />
                 </Card>
               </SwiperSlide>
